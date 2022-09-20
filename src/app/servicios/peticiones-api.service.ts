@@ -22,6 +22,7 @@ import * as URL from '../URLs/urls';
 import {JuegoDeEvaluacion} from '../clases/JuegoDeEvaluacion';
 import {AlumnoJuegoDeEvaluacion} from '../clases/AlumnoJuegoDeEvaluacion';
 import {EquipoJuegoDeEvaluacion} from '../clases/EquipoJuegoDeEvaluacion';
+import { JuegoDeLingo } from '../clases/JuegoDeLingo';
 
 @Injectable({
   providedIn: 'root'
@@ -1193,6 +1194,14 @@ public PonerNotaAlumnoJuegoDeGeocaching(alumnoJuegoDeGeocaching: AlumnoJuegoDeGe
     return this.http.get<EquipoJuegoDeCuestionario[]>(this.APIUrlEquipoJuegoDeCuestionario
                                                       + '?filter[where][juegoDeCuestionarioId]=' + juegoDeCuestionarioId);
   }
+
+
+  /////////////////////////////// JUEGO DE LINGO//////////////////////////////////////
+  public DameJuegosDeLingo(alumnoId: number): Observable<JuegoDeLingo[]> {
+    return this.http.get<JuegoDeLingo[]>(this.APIUrlAlumnos + '/' + alumnoId + '/juegosDeLingo');
+  }
+
+
 
   //////////////////////////// JUEGO DE EVALUACION//////////////////////////////////
   public DameJuegosDeEvaluacion(alumnoId: number): Observable<JuegoDeEvaluacion[]> {

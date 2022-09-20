@@ -701,6 +701,20 @@ export class CalculosService {
           console.log ('No hay juegos de evaluacion en equipo');
         }
 
+        console.log('voy a por los juegos de Lingo del equipo ' + this.equipos[i].id);
+        try {
+          lista = await this.peticionesAPI.DameJuegosDeLingo(this.equipos[i].id).toPromise();
+          for (let j = 0; j < (lista.length); j++) {
+            if (lista[j].JuegoActivo === true) {
+                JuegosActivos.push(lista[j]);
+            } else {
+                JuegosInactivos.push(lista[j]);
+            }
+          }
+        } catch {
+          console.log ('No hay juegos de Lingo en equipo');
+        }
+
         console.log('voy a por los juegos de cuestionario del equipo ' + this.equipos[i].id);
         try {
           lista = await this.peticionesAPI.DameJuegoDeCuestionarioEquipo(this.equipos[i].id).toPromise();
